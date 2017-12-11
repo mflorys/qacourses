@@ -8,7 +8,8 @@ public class test{
 		p2.x = 2;
 		p2.y = 2.1;
 
-		System.out.println(Point.distance(p1,p2));
+		System.out.println(p1.distance(p2));
+		System.out.println(p2.distance(p1));
 
 	}
 }
