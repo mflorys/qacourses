@@ -1,5 +1,14 @@
 public class test{
 	public static void main(String[] args){
-		System.out.println("No elo!");
+
+		Point p1 = new Point();
+		Point p2 = new Point();
+		p1.x = -4.4;
+		p1.y = -1;
+		p2.x = 2;
+		p2.y = 2.1;
+
+		System.out.println(Point.distance(p1,p2));
+
 	}
 }
