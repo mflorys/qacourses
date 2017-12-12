@@ -1,3 +1,5 @@
+package pl.qacourses.sandbox;
+
 /**
  * Created by Maciej.Florys on 11/12/2017.
  */
