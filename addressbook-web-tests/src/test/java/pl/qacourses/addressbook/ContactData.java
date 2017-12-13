@@ -1,34 +1,34 @@
 package pl.qacourses.addressbook;
 
 public class ContactData {
-    private final String firstname;
-    private final String lastname;
-    private final String companyname;
-    private final String homenumber;
+    private final String firstName;
+    private final String lastName;
+    private final String companyName;
+    private final String homeNumber;
     private final String email;
 
-    public ContactData(String firstname, String lastname, String companyname, String homenumber, String email) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.companyname = companyname;
-        this.homenumber = homenumber;
+    public ContactData(String firstName, String lastName, String companyName, String homeNumber, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.companyName = companyName;
+        this.homeNumber = homeNumber;
         this.email = email;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getCompanyname() {
-        return companyname;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public String getHomenumber() {
-        return homenumber;
+    public String getHomeNumber() {
+        return homeNumber;
     }
 
     public String getEmail() {
