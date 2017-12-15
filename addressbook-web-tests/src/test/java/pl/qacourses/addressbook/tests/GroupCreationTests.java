@@ -1,6 +1,7 @@
-package pl.qacourses.addressbook;
+package pl.qacourses.addressbook.tests;
 
 import org.testng.annotations.Test;
+import pl.qacourses.addressbook.model.GroupData;
 
 public class GroupCreationTests extends TestBase {
 

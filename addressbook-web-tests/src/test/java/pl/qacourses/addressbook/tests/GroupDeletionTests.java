@@ -1,4 +1,4 @@
-package pl.qacourses.addressbook;
+package pl.qacourses.addressbook.tests;
 
 import org.testng.annotations.Test;
 
