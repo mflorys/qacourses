@@ -23,6 +23,10 @@ public class GroupHelper {
         wd.findElement(By.name("submit")).click();
     }
 
+    public void deleteSelectedGroups() {
+        wd.findElement(By.name("delete")).click();
+    }
+
     public void fillGroupForm(GroupData groupData) {
         wd.findElement(By.name("group_name")).click();
         wd.findElement(By.name("group_name")).clear();
