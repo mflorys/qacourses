@@ -2,7 +2,7 @@ package pl.qacourses.addressbook.tests;
 
 import org.testng.annotations.Test;
 
-public class gitt basContactCreationTests extends TestBase {
+public class ContactCreationTests extends TestBase {
 
     @Test
     public void testContactCreation() {
