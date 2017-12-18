@@ -33,4 +33,12 @@ public class ContactsHelper extends HelperBase{
     public void acceptDeletionAlert() {
         wd.switchTo().alert().accept();
     }
+
+    public void initGroupModification() {
+        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    }
+
+    public void submitContactModification() {
+        click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+    }
 }
