@@ -1,4 +1,4 @@
-package pl.qacourses.addressbook.tests;
+package pl.qacourses.addressbook.model;
 
 public class ContactData {
     private final String firstName;

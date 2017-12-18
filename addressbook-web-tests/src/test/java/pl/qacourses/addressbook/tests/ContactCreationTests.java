@@ -1,6 +1,7 @@
 package pl.qacourses.addressbook.tests;
 
 import org.testng.annotations.Test;
+import pl.qacourses.addressbook.model.ContactData;
 
 public class ContactCreationTests extends TestBase {
 

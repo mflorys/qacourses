@@ -2,7 +2,7 @@ package pl.qacourses.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import pl.qacourses.addressbook.tests.ContactData;
+import pl.qacourses.addressbook.model.ContactData;
 
 public class ContactsHelper extends HelperBase{
 
