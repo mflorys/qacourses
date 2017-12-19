@@ -24,7 +24,9 @@ public class ContactsHelper extends HelperBase{
         type(By.name("email"),contactData.getEmail());
 
         if (creation) {
-            new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            if (contactData.getGroup() != null) {
+                new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+            }
         } else {
             Assert.assertTrue(!isElementPresent(By.name("new_group")));
         }
@@ -42,11 +44,25 @@ public class ContactsHelper extends HelperBase{
         wd.switchTo().alert().accept();
     }
 
-    public void initGroupModification() {
+    public void initContactModification() {
         click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
     }
 
     public void submitContactModification() {
         click(By.xpath("//div[@id='content']/form[1]/input[22]"));
+    }
+
+    public void createContact(ApplicationManager app, ContactData contact) {
+        app.getNavigationHelper().gotoAddNewPage();
+        fillNewContactForm(contact, true);
+        sumbitNewContactForm();
+        app.getNavigationHelper().returnToHomePage();
+    }
+
+    public boolean isThereAContact() {
+        if (isElementPresent(By.name("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"))) {
+            return true;
+        }
+        return false;
     }
 }
