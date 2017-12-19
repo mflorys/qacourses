@@ -16,7 +16,7 @@ public class ContactsHelper extends HelperBase{
         wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
     }
 
-    public void fillNewContactForm(ContactData contactData, boolean creation) {
+    public void  fillNewContactForm(ContactData contactData, boolean creation) {
         type(By.name("firstname"),contactData.getFirstName());
         type(By.name("lastname"),contactData.getLastName());
         type(By.name("company"),contactData.getCompanyName());
@@ -24,9 +24,9 @@ public class ContactsHelper extends HelperBase{
         type(By.name("email"),contactData.getEmail());
 
         if (creation) {
-            if (contactData.getGroup() != null) {
+            if (contactData.getGroup() != null && (new Select(wd.findElement(By.name("new_group"))).getOptions().size()>1)) {
                 new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-            }
+        }
         } else {
             Assert.assertTrue(!isElementPresent(By.name("new_group")));
         }
