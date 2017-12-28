@@ -16,7 +16,7 @@ public class ContactsHelper extends HelperBase {
         super(wd);
     }
 
-    public void sumbitNewContactForm() {
+    public void submitNewContactForm() {
         wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
     }
 
@@ -48,8 +48,8 @@ public class ContactsHelper extends HelperBase {
         wd.switchTo().alert().accept();
     }
 
-    public void initContactModification() {
-        click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    public void initContactModification(int index) {
+        clickEditContactButton(index+2);
     }
 
     public void submitContactModification() {
@@ -59,7 +59,7 @@ public class ContactsHelper extends HelperBase {
     public void createContact(ApplicationManager app, ContactData contact) {
         app.getNavigationHelper().gotoAddNewPage();
         fillNewContactForm(contact, true);
-        sumbitNewContactForm();
+        submitNewContactForm();
         app.getNavigationHelper().returnToHomePage();
     }
 
@@ -75,7 +75,7 @@ public class ContactsHelper extends HelperBase {
         List<WebElement> elements = wd.findElements(By.name("entry"));
 
         for (int i = 2; i < elements.size() + 2; i++) {
-            wd.findElement(By.xpath("//tr[" + String.valueOf(i)  + "]/td[8]/a/img")).click();
+            clickEditContactButton(i);
             String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
             String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
             String companyName = wd.findElement(By.name("company")).getAttribute("value");
@@ -86,5 +86,9 @@ public class ContactsHelper extends HelperBase {
             wd.navigate().back();
         }
         return contacts;
+    }
+
+    private void clickEditContactButton(int i) {
+        wd.findElement(By.xpath("//tr[" + String.valueOf(i)  + "]/td[8]/a/img")).click();
     }
 }
