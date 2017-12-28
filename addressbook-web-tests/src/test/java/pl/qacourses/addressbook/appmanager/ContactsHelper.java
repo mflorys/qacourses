@@ -85,7 +85,6 @@ public class ContactsHelper extends HelperBase {
             contacts.add(new ContactData(firstName, lastName, companyName, homeNumber, email, null));
             wd.navigate().back();
         }
-
         return contacts;
     }
 }
