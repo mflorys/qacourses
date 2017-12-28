@@ -2,9 +2,13 @@ package pl.qacourses.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import pl.qacourses.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactsHelper extends HelperBase {
 
@@ -64,5 +68,24 @@ public class ContactsHelper extends HelperBase {
             return true;
         }
         return false;
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<>();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+
+        for (int i = 2; i < elements.size() + 2; i++) {
+            wd.findElement(By.xpath("//tr[" + String.valueOf(i)  + "]/td[8]/a/img")).click();
+            String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
+            String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
+            String companyName = wd.findElement(By.name("company")).getAttribute("value");
+            String homeNumber = wd.findElement(By.name("home")).getAttribute("value");
+            String email = wd.findElement(By.name("email")).getAttribute("value");
+
+            contacts.add(new ContactData(firstName, lastName, companyName, homeNumber, email, null));
+            wd.navigate().back();
+        }
+
+        return contacts;
     }
 }
