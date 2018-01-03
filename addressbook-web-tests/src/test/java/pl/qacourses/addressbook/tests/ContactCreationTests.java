@@ -15,7 +15,7 @@ public class ContactCreationTests extends TestBase {
         ContactData contact = new ContactData(
                 "John",
                 "Travolta",
-                "qacourses",
+                null,
                 "123123123",
                 "test@email.com",
                 null
