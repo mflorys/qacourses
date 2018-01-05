@@ -11,7 +11,7 @@ public class ContactCreationTests extends TestBase {
 
     @Test
     public void testContactCreation() {
-        List<ContactData> before = app.getContactsHelper().getContactList();
+        List<ContactData> before = app.contacts().list();
         ContactData contact = new ContactData(
                 "John",
                 "Travolta",
@@ -20,9 +20,11 @@ public class ContactCreationTests extends TestBase {
                 "test@email.com",
                 null
         );
-        app.getContactsHelper().createContact(this.app, contact);
-        app.getNavigationHelper().returnToHomePage();
-        List<ContactData> after = app.getContactsHelper().getContactList();
+        app.contacts().create(this.app, contact);
+        app.goTo().homePage();
+        List<ContactData> after = app.contacts().list();
+
+        Assert.assertEquals(after, before.size() + 1);
 
         Comparator<? super ContactData> byLastName = Comparator.comparing(ContactData::getLastName);
         before.add(contact);

@@ -1,6 +1,7 @@
 package pl.qacourses.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.qacourses.addressbook.model.ContactData;
 
@@ -8,10 +9,10 @@ import java.util.List;
 
 public class ContactDeletionTests extends TestBase{
 
-    @Test
-    public void testContactDeletion(){
-        if (!app.getContactsHelper().isThereAContact()){
-            app.getContactsHelper().createContact(app, new ContactData(
+    @BeforeMethod
+    public void ensurePreconditions() {
+        if (app.contacts().list().size() == 0){
+            app.contacts().create(app, new ContactData(
                     "John",
                     "Travolta",
                     "qacourses",
@@ -19,16 +20,20 @@ public class ContactDeletionTests extends TestBase{
                     "test@email.com",
                     "some_group"));
         }
-        List<ContactData> before = app.getContactsHelper().getContactList();
-        app.getContactsHelper().selectContact(before.size() - 1);
-        app.getContactsHelper().clickDeleteButton();
-        app.getContactsHelper().acceptDeletionAlert();
-        app.getNavigationHelper().returnToHomePage();
-        List<ContactData> after = app.getContactsHelper().getContactList();
+    }
 
-        before.remove(before.size() - 1);
+    @Test
+    public void testContactDeletion(){
+        List<ContactData> before = app.contacts().list();
+        int index = before.size() - 1;
+        app.contacts().delete(index);
+        app.goTo().homePage();
+        List<ContactData> after = app.contacts().list();
+
+        before.remove(index);
         Assert.assertEquals(before, after);
 
 
     }
+
 }

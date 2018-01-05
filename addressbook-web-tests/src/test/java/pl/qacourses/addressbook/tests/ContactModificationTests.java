@@ -1,6 +1,7 @@
 package pl.qacourses.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.qacourses.addressbook.model.ContactData;
 
@@ -9,10 +10,10 @@ import java.util.List;
 
 public class ContactModificationTests extends TestBase{
 
-    @Test
-    public void testContactModification(){
-        if (!app.getContactsHelper().isThereAContact()){
-            app.getContactsHelper().createContact(app, new ContactData(
+    @BeforeMethod
+    public void ensurePreconditions() {
+        if (app.contacts().list().size() == 0){
+            app.contacts().create(app, new ContactData(
                     null,
                     "Travolta",
                     null,
@@ -20,16 +21,18 @@ public class ContactModificationTests extends TestBase{
                     "test@email.com",
                     "some_group"));
         }
+    }
 
-        List<ContactData> before = app.getContactsHelper().getContactList();
-        app.getContactsHelper().initContactModification(before.size() -  1);
+    @Test
+    public void testContactModification(){
+        List<ContactData> before = app.contacts().list();
         ContactData contact = new ContactData("John Edited", "Travolta Edited", null, "123123123", "test@edited.com", null);
-        app.getContactsHelper().fillNewContactForm(contact, false);
-        app.getContactsHelper().submitContactModification();
-        app.getNavigationHelper().returnToHomePage();
-        List<ContactData> after = app.getContactsHelper().getContactList();
+        int index = before.size() -  1;
+        app.contacts().modify(contact, index);
+        app.goTo().homePage();
+        List<ContactData> after = app.contacts().list();
 
-        before.remove(before.size() - 1);
+        before.remove(index);
         before.add(contact);
 
         Comparator<? super ContactData> byLastName = Comparator.comparing(ContactData::getLastName);
@@ -37,4 +40,5 @@ public class ContactModificationTests extends TestBase{
         after.sort(byLastName);
         Assert.assertEquals(before, after);
     }
+
 }
