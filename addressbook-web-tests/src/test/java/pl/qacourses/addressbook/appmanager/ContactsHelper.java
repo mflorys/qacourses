@@ -75,13 +75,6 @@ public class ContactsHelper extends HelperBase {
         acceptDeletionAlert();
     }
 
-    public boolean isThereAContact() {
-        if (isElementPresent(By.name("selected[]"))) {
-            return true;
-        }
-        return false;
-    }
-
     public List<ContactData> list() {
         List<ContactData> contacts = new ArrayList<>();
         List<WebElement> rows = wd.findElements(By.name("entry"));
@@ -92,10 +85,9 @@ public class ContactsHelper extends HelperBase {
             String firstName = cells.get(2).getText();
             String email = cells.get(4).getText();
             String homeNumber = cells.get(5).getText();
-
-            contacts.add(new ContactData(firstName, lastName, null, homeNumber, email, null));
+            contacts.add(new ContactData()
+                    .withFirstName(firstName).withLastName(lastName).withHomeNumber(homeNumber).withEmail(email));
         }
-
         return contacts;
     }
 

@@ -5,7 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.qacourses.addressbook.model.GroupData;
 
-import java.util.List;
+import java.util.Set;
 
 public class GroupDeletionTests extends TestBase {
 
@@ -19,14 +19,14 @@ public class GroupDeletionTests extends TestBase {
 
     @Test
     public void testGroupDeletion() {
-        List<GroupData> before = app.groups().list();
-        int index = before.size() - 1;
-        app.groups().delete(index);
-        List<GroupData> after = app.groups().list();
+        Set<GroupData> before = app.groups().all();
+        GroupData deletedGroup = before.iterator().next();
+        app.groups().delete(deletedGroup);
+        Set<GroupData> after = app.groups().all();
 
         Assert.assertEquals(after.size(),before.size() - 1);
 
-        before.remove(index);
+        before.remove(deletedGroup);
         Assert.assertEquals(before, after);
 
     }

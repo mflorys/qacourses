@@ -1,20 +1,42 @@
 package pl.qacourses.addressbook.model;
 
 public class ContactData {
-    private final String firstName;
-    private final String lastName;
-    private final String companyName;
-    private final String homeNumber;
-    private final String email;
+
+    private String firstName;
+    private String lastName;
+    private String companyName;
+    private String homeNumber;
+    private String email;
     private String group;
 
-    public ContactData(String firstName, String lastName, String companyName, String homeNumber, String email, String group) {
+    public ContactData withFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
+    }
+
+    public ContactData withLastName(String lastName) {
         this.lastName = lastName;
+        return this;
+    }
+
+    public ContactData withCompanyName(String companyName) {
         this.companyName = companyName;
+        return this;
+    }
+
+    public ContactData withHomeNumber(String homeNumber) {
         this.homeNumber = homeNumber;
+        return this;
+    }
+
+    public ContactData withEmail(String email) {
         this.email = email;
+        return this;
+    }
+
+    public ContactData withGroup(String group) {
         this.group = group;
+        return this;
     }
 
     public String getFirstName() {
