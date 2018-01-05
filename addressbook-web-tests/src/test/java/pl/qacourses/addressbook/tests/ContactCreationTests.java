@@ -24,7 +24,7 @@ public class ContactCreationTests extends TestBase {
         app.goTo().homePage();
         List<ContactData> after = app.contacts().list();
 
-        Assert.assertEquals(after, before.size() + 1);
+        Assert.assertEquals(after.size(), before.size() + 1);
 
         Comparator<? super ContactData> byLastName = Comparator.comparing(ContactData::getLastName);
         before.add(contact);
